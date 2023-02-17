@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # Run
 # ./busy_numpy.py 8000 3
+# Or use single thread
+# OMP_NUM_THREADS=1 ./busy_numpy.py 8000 3
+# or MKL_NUM_THREADS or NUMEXPR_NUM_THREADS=1
+# numpy.show_config()  for blas version
 
 import sys
 from time import time, localtime, strftime

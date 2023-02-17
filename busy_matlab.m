@@ -1,4 +1,5 @@
 % Keep matlab busy, that's it.
+% Usage example: busy_fft(8000, 3, 5)
 function busy_matlab(n, k_max)
 if exist('OCTAVE_VERSION', 'builtin')
   flushstdout = @() fflush(stdout);
