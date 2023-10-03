@@ -1,6 +1,7 @@
 % Keep matlab busy, that's it.
-% Usage example: busy_fft(8000, 3, 5)
-function busy_matlab(n, k_max)
+% Usage example: busy_matlab(8000, 5)
+% dtype can be 'double' or 'single'
+function busy_matlab(n, k_max, dtype)
 if exist('OCTAVE_VERSION', 'builtin')
   flushstdout = @() fflush(stdout);
 else
@@ -13,11 +14,14 @@ end
 if ~exist('n', 'var')
   n = 4000;
 end
+if ~exist('dtype', 'var')
+  dtype = 'double';
+end
 gflo = n^3*2;
-v = rand(n,1);  v = v/norm(v);
-u = rand(n,1);  u = u/norm(u);
+v = rand(n, 1, dtype);  v = v/norm(v);
+u = rand(n, 1, dtype);  u = u/norm(u);
 % a (not very) random orthogonal matrix
-a = eye(n) - 2*u*u' - 2*v*v' + 4*u*(u'*v)*v';
+a = eye(n, dtype) - 2*u*u' - 2*v*v' + 4*u*(u'*v)*v';
 c = a;
 t00 = tic;
 for k = 1 : k_max
